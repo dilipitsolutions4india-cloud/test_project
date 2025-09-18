@@ -3,11 +3,13 @@ from .models import CreateRecord
 from django.views.decorators.cache import cache_page
 # Create your views here.
 
-@cache_page(60 * 2 , key_prefix='home_view')
+@cache_page(60 * 3 , key_prefix='home_view')
 def home(request):
     data = CreateRecord.objects.all()
     print(data)
+    
     return render(request,template_name='index.html' , context={'data':data})
+
 
 def create(request):
     data = CreateRecord.objects.count()
